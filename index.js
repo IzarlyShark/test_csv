@@ -25,7 +25,9 @@ export default function solution(content){
   female: `${(women / numOfPassenger) * 100}%`,
  }
 
- const str = JSON.stringify(dataArr).split(',"').join('\n')
+ //пытаюсь преобразовать объект в строку, но она такая страшная, как мой бывший
+ const str = JSON.stringify(dataArr).split(',"').join('\n');
+
   console.log(str)
   // END
 }
