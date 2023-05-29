@@ -21,13 +21,27 @@ export default function solution(content){
   const male = data.map((item) => item.split(',')[5]).filter((item) => item === 'male').length;
   const women = data.map((item) => item.split(',')[5]).filter((item) => item === 'female').length;
    dataArr.sexRatio = {
-  male: `${(male / numOfPassenger) * 100}%`,
-  female: `${(women / numOfPassenger) * 100}%`,
+  male: `${((male / numOfPassenger) * 100).toFixed(2)}%`,
+  female: `${((women / numOfPassenger) * 100).toFixed(2)}%`,
  }
+//процент выживщих пассажиров
+//нахожу колличество выживших
+ const passSurvived = data.map((item) => item.split(',')[1]).filter((item) => item === '1').length;
 
- //пытаюсь преобразовать объект в строку, но она такая страшная, как мой бывший
+ dataArr.survived = `${((passSurvived / numOfPassenger) * 100).toFixed(2)}%`;
+
+
+ //имена всех пассажиров, начинающиеся на А 
+ const sortedNamesA = data.map((item) => item.replace( '"' , ' ').split(',')[3])
+ .filter((item) => item
+ .includes("A"))
+ .sort()
+ .join(', ');
+
+ dataArr.namesStartingWithA = sortedNamesA;
+  //пытаюсь преобразовать объект в строку, но она такая страшная, как мой бывший
  const str = JSON.stringify(dataArr).split(',"').join('\n');
 
-  console.log(str)
+  console.log(dataArr)
   // END
 }
